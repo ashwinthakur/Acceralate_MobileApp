@@ -1,30 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_video/modules/lessaons/ui/coursePage.dart';
+import 'package:new_video/modules/lessaons/ui/course.dart';
 import 'package:new_video/utiles/utility.dart';
 import 'package:html_unescape/html_unescape.dart';
-
 import 'package:new_video/modules/home/bloc/home_bloc.dart';
-
-// class HomePageCaller extends StatelessWidget {
-//   // This widget is the root of your application.
-//   final backColor = const Color(0xFF1D252F);
-//   final Color backclr = const Color(0xFF1D252F);
-
-//   @override
-// //   Widget build(BuildContext context) {
-// //     return MaterialApp(
-// //       title: 'Flutter Demo',
-// //       theme: ThemeData(
-// //         backgroundColor: backColor,
-// //         brightness: Brightness.dark,
-// //       ),
-// //       debugShowCheckedModeBanner: false,
-// //       home: HomePage(),
-// //     );
-// //   }
-// // }
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,14 +15,15 @@ class _HomePageState extends State<HomePage> {
   final backColor = const Color(0xFF1D252F);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var unescape = HtmlUnescape();
+
   HomeBloc _bloc = HomeBloc();
   void initState() {
     super.initState();
-    _bloc.add(HomeButtonPressed());
+    _bloc.add(HomePageEvent());
   }
 
-  Home() async {
-    _bloc.add(HomeButtonPressed());
+  home() async {
+    _bloc.add(HomePageEvent());
   }
 
   Widget _trainingData(obj) => Container(
@@ -69,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                         left: 20, top: 40, right: 10, bottom: 0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      // color: Colors.black
                     ),
                     child: Text(
                       "Beginner",
@@ -143,10 +123,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           margin: const EdgeInsets.all(0.0),
-                          padding:
-                              //EdgeInsets.only(left: 0, right: 30, top: 5, bottom: 5),
-                              EdgeInsets.only(
-                                  left: 5, top: 5, right: 0, bottom: 0),
+                          padding: EdgeInsets.only(
+                              left: 5, top: 5, right: 0, bottom: 0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -180,7 +158,6 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      // unescape.convert("${obj.Content}"),
                       "hello",
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -268,7 +245,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         margin: const EdgeInsets.all(0.0),
-        //color: Colors.blueGrey[900],
         child: ListView(
           children: [
             Padding(
@@ -281,7 +257,6 @@ class _HomePageState extends State<HomePage> {
                       EdgeInsets.only(left: 0, top: 0, right: 00, bottom: 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    // color: Colors.blueGrey[900]
                   ),
                   child: Text(
                     "Home",
@@ -306,7 +281,6 @@ class _HomePageState extends State<HomePage> {
                             child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 200),
                                 alignment: Alignment.topCenter,
-                                // height: closeTopContainer ? 0 : categoryHeight,
                                 child: _sliderWidget(state.obj)),
                           ))
                         : Center(
@@ -326,7 +300,6 @@ class _HomePageState extends State<HomePage> {
                 leading: Container(
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
-                    // color: Color(0xFF1D252F),
                     border: Border.all(width: 0.0, color: Colors.white54),
                     borderRadius: BorderRadius.all(Radius.circular(
                             14) //                 <--- border radius here
@@ -354,9 +327,7 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 14),
                 ),
                 selected: true,
-                onTap: () {
-                  debugPrint("Starred***************** Me!");
-                },
+                onTap: () {},
               ),
             ),
             Container(
@@ -396,9 +367,7 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 14),
                 ),
                 selected: true,
-                onTap: () {
-                  debugPrint("Starred***************** Me!");
-                },
+                onTap: () {},
               ),
             ),
             Container(
@@ -437,9 +406,7 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 14),
                 ),
                 selected: true,
-                onTap: () {
-                  debugPrint("Starred***************** Me!");
-                },
+                onTap: () {},
               ),
             ),
           ],

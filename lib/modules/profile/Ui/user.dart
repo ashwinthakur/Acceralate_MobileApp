@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'package:new_video/modules/profile/Bloc/models/userdata.dart';
 import 'package:flutter/material.dart';
 import 'package:new_video/modules/profile/Bloc/user_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_video/modules/profile/Ui/useredit.dart';
-import 'package:new_video/overrides.dart' as overrides;
-import 'package:new_video/globals.dart' as globals;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:new_video/utiles/utility.dart';
 
@@ -15,26 +12,26 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  int _selectedIndex = 0;
-  bool pushEnabled = true;
   UserBloc _bloc = UserBloc();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   UserData obj1;
-  void initState() {
-    super.initState();
-    _bloc.add(UserButtonPressed());
-  }
 
-  login() async {
-    _bloc.add(UserButtonPressed());
-  }
+  bool isSwitched = false;
+  var textValue = 'Switch is OFF';
+  bool pushEnabled = true;
 
   final backColor = const Color(0xFF1D252F);
   final sebarcolor = const Color(0xFF8E8E93);
   Color c = const Color.fromRGBO(142, 142, 147, 0.12);
 
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
+  void initState() {
+    super.initState();
+    _bloc.add(UserPageEvent());
+  }
+
+  login() async {
+    _bloc.add(UserPageEvent());
+  }
 
   void toggleSwitch(bool value) {
     if (isSwitched == false) {
@@ -123,7 +120,7 @@ class _UserPageState extends State<UserPage> {
                     _scaffoldKey, "Successfully GetUserData", context);
               }
 
-              if (state is ErrorReceived1) {
+              if (state is ErrorReceivedtoUserData) {
                 if (state.err != null && state.err != "") {
                   Utility.showSnackBar(_scaffoldKey, "${state.err}", context);
                 }

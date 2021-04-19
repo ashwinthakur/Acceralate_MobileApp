@@ -1,45 +1,46 @@
 import 'dart:async';
-import 'package:new_video/modules/home/models/trainingsdata.dart';
+import 'package:new_video/modules/lessaons/ui/course.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:new_video/modules/lessaons/ui/models/coursedata.dart';
 import '../../../overrides.dart' as overrides;
 import 'package:dio/dio.dart';
-part 'home_event.dart';
-part 'home_state.dart';
+part 'course_event.dart';
+part 'course_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeInitial());
+class CourseBloc extends Bloc<CourseEvent, CourseState> {
+  CourseBloc() : super(CourseInitial());
+
+  bool isRegisterApiCallProcess = false;
+  @override
+  CourseState get initialState => CourseInitial();
 
   @override
-  HomeState get initialState => HomeInitial();
-
-  @override
-  Stream<HomeState> mapEventToState(
-    HomeEvent event,
+  Stream<CourseState> mapEventToState(
+    CourseEvent event,
   ) async* {
-    if (event is HomePageEvent) {
-      print("hello event function");
+    if (event is CourseButtonPressed) {
+      print("hello CourseEvent call ");
       try {
         yield Loading();
-        final cred = HomePageEvent();
-        List<TrainingsData> data = await getTrainings();
-
+        final cred = CourseButtonPressed();
+        List<CourseData> data = await getCourse();
         print(data);
-        yield FetchTrainingData(obj: data);
+        yield FetchCourseData(obj: data);
       } catch (e) {
-        yield Errorinloading(err: e);
+        yield ErrorinloadingCoursedata(err: e);
       }
     }
   }
 
-  Future getTrainings() async {
+  Future getCourse() async {
     try {
       FormData formData = FormData.fromMap({});
 
       var dio = Dio();
       Response response = await dio.get(
-        "${overrides.homecourseApi}",
+        "${overrides.courseApi}",
         options: Options(
           headers: {
             'Accept': 'application/json',
@@ -53,15 +54,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final data2 = data as List;
 
         return data2.map((i) {
-          return TrainingsData(
-            i["id"],
+          return CourseData(
             i["title"]["rendered"],
-            i["slug"],
             i["content"]["rendered"],
           );
         }).toList();
       } else {
-        // print(response.body);
         if (response.data.contains("Failed host lookup")) {
           print("inside if");
           throw ("Failed host lookup.");

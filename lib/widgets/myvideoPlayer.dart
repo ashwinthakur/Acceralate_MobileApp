@@ -4,7 +4,6 @@ import 'package:video_player/video_player.dart';
 
 class MyVideoPlayer extends StatefulWidget {
   String videoUrl;
-
   MyVideoPlayer({
     Key key,
     this.videoUrl,
@@ -16,9 +15,9 @@ class MyVideoPlayer extends StatefulWidget {
 
 class _MyVideoPlayerState extends State<MyVideoPlayer> {
   VideoPlayerController _controller;
-  bool _visible = true;
   Future<void> _initializeVideoPlayerFuture;
-  Color vp_button = const Color.fromRGBO(83, 98, 116, 0.4);
+  Color vpbuttonColor = const Color.fromRGBO(83, 98, 116, 0.4);
+
   @override
   void initState() {
     _controller = VideoPlayerController.network(
@@ -59,7 +58,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                           alignment: Alignment.bottomLeft,
                           padding: const EdgeInsets.all(0.0),
                           decoration: BoxDecoration(
-                              color: vp_button,
+                              color: vpbuttonColor,
                               border:
                                   Border.all(width: 0.0, color: Colors.white54),
                               borderRadius: BorderRadius.all(Radius.circular(
@@ -96,7 +95,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                           alignment: Alignment.bottomLeft,
                           padding: const EdgeInsets.all(0.0),
                           decoration: BoxDecoration(
-                              color: vp_button,
+                              color: vpbuttonColor,
                               border:
                                   Border.all(width: 0.0, color: Colors.white54),
                               borderRadius: BorderRadius.all(Radius.circular(

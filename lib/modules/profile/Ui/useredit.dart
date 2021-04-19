@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:new_video/utiles/utility.dart';
 import 'package:regexpattern/regexpattern.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-
-void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: UsereditPage()));
-}
 
 class UsereditPage extends StatefulWidget {
   UsereditPage({Key key}) : super(key: key);
@@ -18,19 +15,18 @@ class UsereditPage extends StatefulWidget {
 }
 
 class _UsereditPageState extends State<UsereditPage> {
-  bool padd = true;
-  var _image;
-  final picker = ImagePicker();
-  String mobile;
-
-  var isLoading = false;
-
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   final formKey = new GlobalKey<FormState>();
 
   String _email;
   String _username;
   int _phone;
+  String mobile;
+  var _image;
+
+  var isLoading = false;
+  bool padd = true;
+  final picker = ImagePicker();
 
   @override
   void initState() {
@@ -47,7 +43,7 @@ class _UsereditPageState extends State<UsereditPage> {
   Future openCamera() async {
     var image = await ImagePicker.platform
         .pickImage(source: ImageSource.camera, imageQuality: 50);
-    //  final fileName = path.basename(_image.path);
+
     setState(() {
       _image = image;
     });
@@ -67,17 +63,13 @@ class _UsereditPageState extends State<UsereditPage> {
 
     if (form.validate()) {
       form.save();
-
-      performLogin();
+      performSubmit();
     }
   }
 
-  void performLogin() {
-    final snackbar = new SnackBar(
-      content:
-          new Text("Email : $_email, USERNAME : $_username ,phone : $_phone"),
-    );
-    scaffoldKey.currentState.showSnackBar(snackbar);
+  void performSubmit() {
+    Utility.showSnackBar(scaffoldKey,
+        "Email : $_email, USERNAME : $_username ,phone : $_phone", context);
   }
 
   String validateMobile(String value) {
@@ -108,7 +100,6 @@ class _UsereditPageState extends State<UsereditPage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // do something
                 print("close button pressed ");
               },
             ),
@@ -116,15 +107,12 @@ class _UsereditPageState extends State<UsereditPage> {
         ),
         body: Container(
             margin: const EdgeInsets.all(0.0),
-            //color: Colors.blueGrey[900],
             child: SingleChildScrollView(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                   ClipPath(
                     child: Container(
-                      // width: 412,
-
                       width: MediaQuery.of(context).size.width * 100,
                       color: Color(0xFFFA6F48),
                       child: Column(
@@ -152,31 +140,11 @@ class _UsereditPageState extends State<UsereditPage> {
                                     ),
                                   ),
                                 ),
-
-                          // : Container(
-                          //     width: 50,
-                          //     height: 50,
-                          //     padding: const EdgeInsets.all(5.0),
-                          //     decoration: BoxDecoration(
-                          //       border: Border.all(
-                          //           width: 0.0, color: Colors.white54),
-                          //       borderRadius: BorderRadius.all(
-                          //           Radius.circular(
-                          //               30.0) //                 <--- border radius here
-                          //           ),
-                          //     ),
-                          //     child: Image.file(File(_image.path))),
                           GestureDetector(
                               onTap: () {
-                                print('Pressed');
-                                // openCamera();
                                 return showModalBottomSheet<void>(
-                                  // context and builder are
-                                  // required properties in this widget
                                   context: context,
                                   builder: (BuildContext context) {
-                                    // we set up a container inside which
-                                    // we create center column and display text
                                     return Container(
                                       height: 200,
                                       child: Center(
@@ -190,8 +158,6 @@ class _UsereditPageState extends State<UsereditPage> {
                                                   right: 10,
                                                   bottom: 5,
                                                   top: 5),
-
-                                              //color: Colors.blueGrey[900],
                                               child: ListTile(
                                                   leading: Container(
                                                     padding:
@@ -225,15 +191,9 @@ class _UsereditPageState extends State<UsereditPage> {
                                                             Color(0XFF9DB0C7),
                                                         fontSize: 17),
                                                   ),
-
-                                                  //subtitle: Text('This is subtitle'),
                                                   selected: true,
                                                   onTap: () {
-                                                    debugPrint(
-                                                        "Starred***** Listile 2   2   Me!");
                                                     openCamera();
-                                                    // Navigator.push(context,
-                                                    //     MaterialPageRoute(builder: (context) => SearchPage()));
                                                   }),
                                             ),
                                             Container(
@@ -242,8 +202,6 @@ class _UsereditPageState extends State<UsereditPage> {
                                                   right: 10,
                                                   bottom: 0,
                                                   top: 0),
-
-                                              //color: Colors.blueGrey[900],
                                               child: ListTile(
                                                   leading: Container(
                                                     padding:
@@ -277,20 +235,13 @@ class _UsereditPageState extends State<UsereditPage> {
                                                             Color(0XFF9DB0C7),
                                                         fontSize: 17),
                                                   ),
-
-                                                  //subtitle: Text('This is subtitle'),
                                                   selected: true,
                                                   onTap: () {
-                                                    debugPrint(
-                                                        "Starred***** Listile 2   2   Me!");
                                                     _imgFromGallery();
-                                                    // Navigator.push(context,
-                                                    //     MaterialPageRoute(builder: (context) => SearchPage()));
                                                   }),
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                print("upper");
                                                 Navigator.pop(context);
                                               },
                                               child: Padding(
@@ -310,7 +261,6 @@ class _UsereditPageState extends State<UsereditPage> {
                                                         new Text(
                                                           "Cancel",
                                                           style: TextStyle(
-                                                            // color: Colors.white.withOpacity(0.8),
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontFamily:
@@ -346,8 +296,6 @@ class _UsereditPageState extends State<UsereditPage> {
                                   color: Color(0xFF1D252F),
                                 ),
                               )),
-
-                          //  openCamera,
                         ],
                       ),
                     ),
@@ -368,13 +316,9 @@ class _UsereditPageState extends State<UsereditPage> {
                                 padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 10, bottom: 10),
                                 child: TextFormField(
-                                  // validator: (val) => val.length < 1
-                                  //     ? 'username  is cannot be empty'
-                                  //     : null,
-
                                   validator: (val) {
                                     if (val.isEmpty) {
-                                      return 'username cannot be  empty  ';
+                                      return 'username field cannot be  empty  ';
                                     } else if (val.length > 0 &&
                                         val.length < 6) {
                                       return 'username  must is greater 5 character  ';
@@ -382,7 +326,6 @@ class _UsereditPageState extends State<UsereditPage> {
 
                                     return null;
                                   },
-
                                   onSaved: (val) => _username = val,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -502,7 +445,6 @@ class _UsereditPageState extends State<UsereditPage> {
                                               new Text(
                                                 "Update Profile",
                                                 style: TextStyle(
-                                                  // color: Colors.white.withOpacity(0.8),
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "SF UI Display",
                                                   color: Colors.white,
@@ -551,115 +493,3 @@ class BottomWaveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
-// import 'package:flutter/material.dart';
-
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: HomePage(),
-//       theme: ThemeData(
-//         brightness: Brightness.dark,
-//       ),
-//     );
-//   }
-// }
-
-// class HomePage extends StatefulWidget {
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   var _formKey = GlobalKey<FormState>();
-//   var isLoading = false;
-
-//   void _submit() {
-//     final isValid = _formKey.currentState.validate();
-//     if (!isValid) {
-//       return;
-//     }
-//     _formKey.currentState.save();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Form Validation"),
-//         leading: Icon(Icons.filter_vintage),
-//       ),
-//       //body
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         //form
-//         child: Form(
-//           key: _formKey,
-//           child: Column(
-//             children: <Widget>[
-//               Text(
-//                 "Form-Validation In Flutter ",
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               //styling
-//               SizedBox(
-//                 height: MediaQuery.of(context).size.width * 0.1,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: 'E-Mail'),
-//                 keyboardType: TextInputType.emailAddress,
-//                 onFieldSubmitted: (value) {
-//                   //Validator
-//                 },
-//                 validator: (value) {
-//                   if (value.isEmpty ||
-//                       !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-//                           .hasMatch(value)) {
-//                     return 'Enter a valid email!';
-//                   }
-//                   return null;
-//                 },
-//               ),
-//               //box styling
-//               SizedBox(
-//                 height: MediaQuery.of(context).size.width * 0.1,
-//               ),
-//               //text input
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: 'Password'),
-//                 keyboardType: TextInputType.emailAddress,
-//                 onFieldSubmitted: (value) {},
-//                 obscureText: true,
-//                 validator: (value) {
-//                   if (value.isEmpty) {
-//                     return 'Enter a valid password!';
-//                   }
-//                   return null;
-//                 },
-//               ),
-//               SizedBox(
-//                 height: MediaQuery.of(context).size.width * 0.1,
-//               ),
-//               RaisedButton(
-//                 padding: EdgeInsets.symmetric(
-//                   vertical: 10.0,
-//                   horizontal: 15.0,
-//                 ),
-//                 child: Text(
-//                   "Submit",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                   ),
-//                 ),
-//                 onPressed: () => _submit(),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

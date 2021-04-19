@@ -6,7 +6,6 @@ import 'package:video_player/video_player.dart';
 class ChewieDemo extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
   const ChewieDemo({this.title = 'Chewie Demo'});
-
   final String title;
 
   @override

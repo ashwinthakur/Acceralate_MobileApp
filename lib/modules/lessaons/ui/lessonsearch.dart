@@ -1,33 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-// class SearchPageCaller extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: LessonSearchPage(),
-//     );
-//   }
-// }
-
 class LessonSearchPage extends StatefulWidget {
   @override
   _LessonSearchPageState createState() => _LessonSearchPageState();
 }
 
 class _LessonSearchPageState extends State<LessonSearchPage> {
-  int _selectedIndex = 0;
-
-  void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+  List<String> newDataList = List.from(mainDataList);
   final backColor = const Color(0xFF1D252F);
   final sebarcolor = const Color(0xFF8E8E93);
   Color c = const Color.fromRGBO(142, 142, 147, 0.12);
@@ -37,8 +17,6 @@ class _LessonSearchPageState extends State<LessonSearchPage> {
     "How To fall Correctly",
     "Protect Your Face",
   ];
-
-  List<String> newDataList = List.from(mainDataList);
 
   onItemChanged(String value) {
     setState(() {

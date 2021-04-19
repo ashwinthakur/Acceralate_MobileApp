@@ -5,7 +5,7 @@ abstract class HomeEvent extends Equatable {
 }
 
 //  Homebutton is not available
-class HomeButtonPressed extends HomeEvent {
+class HomePageEvent extends HomeEvent {
   @override
   List<Object> get props => [];
 

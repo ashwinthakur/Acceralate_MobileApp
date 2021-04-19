@@ -21,8 +21,6 @@ class Utility {
     return dateFormat;
   }
 
-  // get Budget Name
-
   static void showSnackBar(_scaffoldKey, msg, context) {
     _scaffoldKey.currentState.removeCurrentSnackBar();
     _scaffoldKey.currentState.showSnackBar(SnackBar(

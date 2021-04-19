@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_video/widgets/myvideoPlayer.dart';
-import 'dart:async';
-import 'package:new_video/widgets/myvideoPlayer.dart';
 
 // ignore: must_be_immutable
 
@@ -12,17 +10,14 @@ class MyLessonPage extends StatefulWidget {
 
 class _MyLessonPageState extends State<MyLessonPage> {
   int _act = 0;
-
-  double _progressValue = 0.0;
-  bool _loading;
   bool isPressed = false;
   Color backColor = Color(0xFF1D252F);
   Color headColor = Color(0xFFFFFFFF);
-
   Color pausebuttonColor = Color(0xFFFA6F48);
   Color playbuttoncolor = Color(0XFF9DB0C7);
   final titlecolor = const Color(0xFF536274);
-  int _selectedIndex = 0;
+  String url =
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4';
 
   Widget showIndicator(bool show) {
     return show
@@ -33,12 +28,8 @@ class _MyLessonPageState extends State<MyLessonPage> {
   @override
   void initState() {
     super.initState();
-    _loading = false;
-    _progressValue = 0.0;
   }
 
-  String url =
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +100,6 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   key: Key(url),
                 ),
               ),
-
-              /////list1/////////////////////////////
-
               Container(
                 padding: const EdgeInsets.only(
                     left: 5, right: 10, bottom: 5, top: 5),
@@ -165,8 +153,6 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   ),
                   selected: true,
                   onTap: () {
-                    print("listile 1    1      1");
-
                     setState(() {
                       url =
                           'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4';
@@ -175,8 +161,6 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   },
                 ),
               ),
-
-              /////////////list 2////////////////////
               Container(
                 padding: const EdgeInsets.only(
                     left: 5, right: 10, bottom: 5, top: 5),
@@ -239,8 +223,6 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   },
                 ),
               ),
-
-              ////////////////////list3 ////////////
               Container(
                 padding: const EdgeInsets.only(
                     left: 5, right: 10, bottom: 5, top: 5),
@@ -303,9 +285,6 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   },
                 ),
               ),
-
-              ////////////////////////list4//////////////
-
               Container(
                 padding: const EdgeInsets.only(
                     left: 5, right: 10, bottom: 5, top: 5),
@@ -368,13 +347,9 @@ class _MyLessonPageState extends State<MyLessonPage> {
                   },
                 ),
               ),
-
-              //////////////////////////////list5/////////////
               Container(
                 padding: const EdgeInsets.only(
                     left: 5, right: 10, bottom: 5, top: 5),
-
-                //color: Colors.blueGrey[900],
                 child: ListTile(
                   leading: _act != 5
                       ? Container(

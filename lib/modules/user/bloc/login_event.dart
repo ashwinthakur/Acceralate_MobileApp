@@ -21,7 +21,6 @@ class LoginButtonPressed extends LoginEvent {
 }
 
 class Registration extends LoginEvent {
-  // final String username;
   final String email;
   final String password;
   final String username;
@@ -37,9 +36,4 @@ class Registration extends LoginEvent {
   @override
   String toString() =>
       'registration {username:$username, email: $email, password: $password }';
-}
-
-class GetUserInfo extends LoginEvent {
-  @override
-  List<Object> get props => throw UnimplementedError();
 }

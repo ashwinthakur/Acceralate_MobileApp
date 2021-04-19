@@ -4,8 +4,8 @@ abstract class UserEvent extends Equatable {
   const UserEvent();
 }
 
-class UserButtonPressed extends UserEvent {
-  const UserButtonPressed();
+class UserPageEvent extends UserEvent {
+  const UserPageEvent();
   @override
   List<Object> get props => [];
 }

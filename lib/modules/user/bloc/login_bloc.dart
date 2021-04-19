@@ -77,7 +77,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       print(response.body);
 
-      //////////////////////////////////Code for set sate ///////////////////////
       if (response.statusCode == 200) {
         return true;
       } else {
@@ -135,7 +134,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               print(data["token"]);
             }
             if (data.containsKey("cookie_name")) {
-              globals.token_name = data["cookie_name"];
+              globals.tokenname = data["cookie_name"];
             }
 
             if (data.containsKey("user")) {

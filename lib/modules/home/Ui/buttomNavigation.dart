@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_video/modules/lessaons/ui/coursePage.dart';
+import 'package:new_video/modules/lessaons/ui/course.dart';
 import 'package:new_video/modules/lessaons/ui/lessonsearch.dart';
 import 'package:new_video/modules/profile/Ui/user.dart';
-import 'package:new_video/modules/profile/Ui/user.dart';
-import 'homepage.dart';
+import 'home.dart';
 
 class ButtomNavigationPage extends StatefulWidget {
   @override
@@ -138,10 +137,9 @@ class _ButtomNavigationPageState extends State<ButtomNavigationPage> {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
-
                 spreadRadius: 105,
                 blurRadius: 10.0,
-                offset: Offset(0, -6), //// changes position of shadow
+                offset: Offset(0, -6),
               ),
             ],
           ),

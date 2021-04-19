@@ -34,21 +34,6 @@ class Loading extends LoginState {
   List<Object> get props => [];
 }
 
-class PasswordRestSuccess extends LoginState {
-  @override
-  List<Object> get props => [];
-}
-
-class Error1 extends LoginState {
-  @override
-  List<Object> get props => [];
-}
-
-class OnLoading extends LoginState {
-  @override
-  List<Object> get props => [];
-}
-
 class ErrorinRegistration extends LoginState {
   final err;
   ErrorinRegistration({this.err});
@@ -69,19 +54,4 @@ class ErrorinLogin extends LoginState {
 
   @override
   List<Object> get props => [err];
-}
-
-class OnClickedRegistration extends LoginState {
-  @override
-  List<Object> get props => [];
-}
-
-class OnClickedReset extends LoginState {
-  @override
-  List<Object> get props => [];
-}
-
-class OnClickUpdate extends LoginState {
-  @override
-  List<Object> get props => [];
 }

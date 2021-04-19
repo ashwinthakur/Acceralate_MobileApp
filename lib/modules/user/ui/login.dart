@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_video/modules/home/Ui/buttomNavigationbar.dart';
+import 'package:new_video/modules/home/Ui/buttomNavigation.dart';
 import 'package:new_video/utiles/utility.dart';
 import 'register.dart';
 import 'package:new_video/modules/user/bloc/login_bloc.dart';
@@ -12,11 +12,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _isHidden = true;
-  LoginBloc _bloc = LoginBloc();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  LoginBloc _bloc = LoginBloc();
+  bool _isHidden = true;
 
   login() async {
     _bloc.add(LoginButtonPressed(
@@ -36,9 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           Align(
               alignment: Alignment.topLeft,
               child: IconButton(
-                onPressed: () {
-                  debugPrint("Starred Me!");
-                },
+                onPressed: () {},
                 color: Colors.white,
                 icon: Icon(Icons.arrow_back),
                 disabledColor: Colors.grey,
@@ -234,8 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                   BlocBuilder(
                       bloc: _bloc,
                       builder: (BuildContext context, LoginState state) {
-                        print(
-                            "Inside the BlocBuilder **** state -----------------------");
+                        print("***Inside the BlocBuilder ***");
                         print(state);
                         return Container(
                           padding: EdgeInsets.only(
@@ -298,8 +295,6 @@ class _LoginPageState extends State<LoginPage> {
             bloc: _bloc,
             listener: (context, state) {
               if (state is LoginSuccess) {
-                print("show");
-
                 Utility.showSnackBar(
                     _scaffoldKey, "Successfully loggedin", context);
 
@@ -311,12 +306,7 @@ class _LoginPageState extends State<LoginPage> {
 
               if (state is ErrorinLogin) {
                 if (state.err != null && state.err != "") {
-                  _scaffoldKey.currentState?.showSnackBar(SnackBar(
-                    content: Text(
-                      "${state.err}",
-                    ),
-                    duration: Duration(seconds: 0),
-                  ));
+                  Utility.showSnackBar(_scaffoldKey, "${state.err}", context);
                 }
               }
             },

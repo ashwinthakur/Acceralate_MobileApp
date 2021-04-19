@@ -2,7 +2,6 @@ import 'package:new_video/modules/user/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_video/utiles/utility.dart';
-
 import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -161,7 +160,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintStyle: TextStyle(
                               fontFamily: "SF UI Display",
                               color: Colors.white,
-                              //  fontStyle: FontStyle.italic,
                             ),
                             suffix: InkWell(
                               onTap: _togglePasswordView,

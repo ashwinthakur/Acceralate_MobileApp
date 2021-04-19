@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-class WebViewExample extends StatefulWidget {
+class WebViewPage extends StatefulWidget {
   @override
-  _WebViewExampleState createState() => _WebViewExampleState();
+  _WebViewPageState createState() => _WebViewPageState();
 }
 
-class _WebViewExampleState extends State<WebViewExample> {
+class _WebViewPageState extends State<WebViewPage> {
   TextEditingController controller = TextEditingController();
   FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
   var urlString =

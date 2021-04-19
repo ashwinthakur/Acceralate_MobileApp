@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_video/modules/lessaons/Bloc/course_bloc.dart';
 import 'package:new_video/widgets/webview.dart';
-
-void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: CoursePage()));
-}
 
 class CoursePage extends StatefulWidget {
   @override
@@ -11,9 +8,19 @@ class CoursePage extends StatefulWidget {
 }
 
 class _CoursePageState extends State<CoursePage> {
+  CourseBloc bloc = CourseBloc();
+
+  void initState() {
+    super.initState();
+    bloc.add(CourseButtonPressed());
+  }
+
+  course() async {
+    bloc.add(CourseButtonPressed());
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-        // controller: controller,
         appBar: AppBar(
           backgroundColor: Color(0XFF1D252F),
           title: Row(
@@ -44,25 +51,17 @@ class _CoursePageState extends State<CoursePage> {
                       Padding(
                         padding: EdgeInsets.only(
                             left: 0, top: 00, right: 00, bottom: 2.5),
-
-                        // EdgeInsets.only(left: 0, top: 0, right: 00, bottom: 0),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-
                             children: [
                               Center(
                                 child: Container(
                                   width: 50,
                                   height: 50,
-                                  // width: MediaQuery.of(context).size.width,
                                   child: Image.network(
                                     'https://picsum.photos/250?image=9',
                                     fit: BoxFit.fill,
-                                    // width: 150,
-                                    // height: 250,
-                                    // alignment: Alignment.center,
                                   ),
                                 ),
                               ),
@@ -71,15 +70,11 @@ class _CoursePageState extends State<CoursePage> {
                       Padding(
                         padding: EdgeInsets.only(
                             left: 10, top: 20, right: 00, bottom: 2.5),
-
-                        // EdgeInsets.only(left: 0, top: 0, right: 00, bottom: 0),
                         child: Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.all(0.0),
-                          padding:
-                              //EdgeInsets.only(left: 0, right: 30, top: 5, bottom: 5),
-                              EdgeInsets.only(
-                                  left: 0, top: 0, right: 0, bottom: 0),
+                          padding: EdgeInsets.only(
+                              left: 0, top: 0, right: 0, bottom: 0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0XFF1D252F)),
@@ -102,16 +97,11 @@ class _CoursePageState extends State<CoursePage> {
                       Padding(
                         padding: EdgeInsets.only(
                             left: 10, top: 30, right: 12, bottom: 2.5),
-
-                        // EdgeInsets.only(left: 0, top: 0, right: 00, bottom: 0),
                         child: Container(
                           alignment: Alignment.centerLeft,
                           margin: const EdgeInsets.all(0.0),
                           padding: EdgeInsets.only(
                               left: 10, right: 00, top: 2.5, bottom: 0.5),
-
-                          // EdgeInsets.only(
-                          //     left: 0, top: 0, right: 00, bottom: 0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -119,7 +109,6 @@ class _CoursePageState extends State<CoursePage> {
                             "Course Description.",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                // color: Color(0XFF9DB0C7),
                                 color: Colors.white70,
                                 fontFamily: 'SF Pro Display Bold',
                                 fontSize: 20),
@@ -140,12 +129,9 @@ class _CoursePageState extends State<CoursePage> {
                             "Master Angular 10  and build awesome, reactive web apps with the successor of Angular.js .Master Angular 10  and build awesome, reactive web apps with the successor of Angular.js",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                // color: Color(0XFF9DB0C7),
                                 color: Colors.white38,
                                 fontFamily: 'SF Pro Display Bold',
-                                // wordSpacing: 1.2,
                                 height: 1.7,
-                                // letterSpacing: 1.0,
                                 fontSize: 15),
                           ),
                         ),
@@ -159,7 +145,7 @@ class _CoursePageState extends State<CoursePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => WebViewExample()));
+                                    builder: (context) => WebViewPage()));
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -178,7 +164,6 @@ class _CoursePageState extends State<CoursePage> {
                                         color: Color(0xFf1D252F),
                                         border: Border.all(
                                           width: 0.0,
-                                          // color: Color(0xFFbccbff)
                                         ),
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(
@@ -193,7 +178,6 @@ class _CoursePageState extends State<CoursePage> {
                                     new Text(
                                       "  Start Tutorial",
                                       style: TextStyle(
-                                        // color: Colors.white.withOpacity(0.8),
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "SF UI Display",
                                         color: Colors.white,
@@ -206,7 +190,5 @@ class _CoursePageState extends State<CoursePage> {
                         ),
                       )
                     ]))));
-
-    // );
   }
 }

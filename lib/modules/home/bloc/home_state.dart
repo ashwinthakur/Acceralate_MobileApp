@@ -26,7 +26,7 @@ class Errorinloading extends HomeState {
 }
 
 class FetchTrainingData extends HomeState {
-  List<Trainings> obj;
+  List<TrainingsData> obj;
 
   FetchTrainingData({this.obj});
 

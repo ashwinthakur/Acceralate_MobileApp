@@ -9,11 +9,8 @@ String registerApi = "https://reqres.in/api/register";
 String userDataApi =
     "https://accelerate.zehntech.net/api/auth/generate_auth_cookie/";
 
-Color resolvedStatusColor = Color(0xff04c23d);
-Color unresolvedStatusColor = Color(0xffe61405);
-Color referredStatusColor = Color(0xfff5bd07);
-Color ongoingStatusColor = Color(0xff07f5c1);
-Color dismissalStatusColor = Color(0xff61edd6);
+String courseApi =
+    'https://accelerate.zehntech.net/wp-json/ldlms/v1/sfwd-courses';
 
 Color backGroundColor = Color(0xff161C22);
 Color titleColor = Color(0xff9DB0C7);
