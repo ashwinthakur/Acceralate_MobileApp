@@ -5,7 +5,7 @@ abstract class CourseEvent extends Equatable {
 }
 
 //   Coursebutton is not available
-class CourseButtonPressed extends CourseEvent {
+class CoursePageEvent extends CourseEvent {
   @override
   List<Object> get props => [];
 

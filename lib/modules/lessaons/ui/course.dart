@@ -12,11 +12,11 @@ class _CoursePageState extends State<CoursePage> {
 
   void initState() {
     super.initState();
-    bloc.add(CourseButtonPressed());
+    bloc.add(CoursePageEvent());
   }
 
   course() async {
-    bloc.add(CourseButtonPressed());
+    bloc.add(CoursePageEvent());
   }
 
   Widget build(BuildContext context) {
